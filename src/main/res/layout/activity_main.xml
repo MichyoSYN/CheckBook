@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    tools:context="song.michyo.accountbook.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/title_buttons"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="list" />
+        <Button
+            android:id="@+id/button_fresh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="fresh" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/account_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/listView_thumbnails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_buttons"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="feed" />
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add new" />
+
+        <Button
+            android:id="@+id/button_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="overview" />
+    </LinearLayout>
+</LinearLayout>
