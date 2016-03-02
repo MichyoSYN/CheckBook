@@ -15,6 +15,7 @@ import java.util.List;
 import song.michyo.accountbook.R;
 import song.michyo.accountbook.activity.NewItemActivity;
 import song.michyo.accountbook.adaptor.ThumbnailListAdaptor;
+import song.michyo.accountbook.model.BillModel;
 import song.michyo.accountbook.model.ThumbnailListRowModel;
 
 public class MainActivity extends ListActivity {
@@ -35,12 +36,18 @@ public class MainActivity extends ListActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ( RESULT_OK == resultCode && 1 == requestCode) {
-            String money_amout = data.getStringExtra("money_amount");
-            ThumbnailListRowModel rowModel = new ThumbnailListRowModel("Other", "today", Integer.valueOf(money_amout));
-            tempData.add(rowModel);
-            listAdaptor.notifyDataSetChanged();
+        if (RESULT_OK == resultCode && 1 == requestCode) {
+            BillModel billModel = data.getParcelableExtra(NewItemActivity.EXTRA_BILL);
+            ThumbnailListRowModel rowModel = convertBillModelToRowModel(billModel);
+            addOneRow(rowModel);
         }
+    }
+
+    private ThumbnailListRowModel convertBillModelToRowModel(BillModel billModel) {
+        return new ThumbnailListRowModel(
+                billModel.getCategory(),
+                BillModel.convertDateToString(billModel.getDate()),
+                billModel.getMoney());
     }
 
     private static List<ThumbnailListRowModel> tempDataPrepare() {
@@ -61,5 +68,10 @@ public class MainActivity extends ListActivity {
                 MainActivity.this.startActivityForResult(intent, 1);
             }
         });
+    }
+
+    private void addOneRow(ThumbnailListRowModel rowModel) {
+        tempData.add(rowModel);
+        listAdaptor.notifyDataSetChanged();
     }
 }
